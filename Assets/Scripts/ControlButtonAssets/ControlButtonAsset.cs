@@ -27,7 +27,9 @@ namespace EVRC
         }
 
         public ButtonCategory category;
-
+        virtual public Type controlButtonType() {
+            return typeof(ControlButton);
+        }
         protected SteamVR_Events.Event refreshEvent = null;
 
         // Get the text to use for tooltips

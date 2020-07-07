@@ -105,7 +105,12 @@ namespace EVRC
         private void AddControlButton(State.SavedControlButton controlButton)
         {
             var controlButtonAsset = controlButtonCatalog.GetByName(controlButton.type);
-            var button = ControlButtonManager.instance.AddControlButton(controlButtonAsset);
+            ControlButton button;
+            if(controlButton.type.StartsWith("SetSpeed")) {
+                button = ControlButtonManager.instance.AddControlButton(controlButtonAsset as SpeedControlButtonAsset);
+            } else {
+                button = ControlButtonManager.instance.AddControlButton(controlButtonAsset);
+            }
             ApplyTransform(button.transform, controlButton.loc);
         }
 

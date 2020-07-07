@@ -46,7 +46,7 @@ namespace EVRC
             {
                 controlButtonAsset.AddRefreshListener(Refresh);
             }
-        }
+        }      
 
         public override bool IsValid()
         {

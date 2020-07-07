@@ -38,7 +38,11 @@ namespace EVRC
         /**
          * Add a new control button into the scene
          */
-        public ControlButton AddControlButton(ControlButtonAsset controlButtonAsset)
+        public ControlButton AddControlButton(ControlButtonAsset controlButtonAsset) {
+            return AddControlButton<ControlButton, ControlButtonAsset>(controlButtonAsset, controlButtonPrefab);
+        }
+
+        protected T AddControlButton<T, U>(U controlButtonAsset, GameObject prefab) where T: ControlButton where U: ControlButtonAsset
         {
             if (!rootMap.ContainsKey(controlButtonAsset.category))
             {
@@ -46,9 +50,9 @@ namespace EVRC
                 return null;
             }
 
-            controlButtonPrefab.SetActive(false);
-            var controlButtonInstance = Instantiate(controlButtonPrefab);
-            var controlButton = controlButtonInstance.GetComponent<ControlButton>();
+            prefab.SetActive(false);
+            var controlButtonInstance = Instantiate(prefab);
+            var controlButton = controlButtonInstance.GetComponent<T>();
             controlButtonInstance.name = controlButtonAsset.name;
             controlButton.controlButtonAsset = controlButtonAsset;
             
